@@ -11,8 +11,8 @@ pipeline {
                     }
                 }
         stage('Build Stage') {
-               tools {
-                   jdk 'JDK_8_UBUNTU'
+            tools {
+                jdk 'JDK_8_UBUNTU'
                }
 
             }
