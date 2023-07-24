@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh "mvn ${params.MAVEN_GOAL}"
             }
-        }
+        
         stage('Post Build') {
             steps {
                 archiveArtifacts artifacts: '**/gameoflife.war',
@@ -31,5 +31,6 @@ pipeline {
             }
         }
             }
+}
         
     
