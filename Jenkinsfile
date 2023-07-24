@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Version Control System') {
             steps {
-                git url: 'https://github.com/krishna6788/game-of-life.git'
+                git url: 'https://github.com/krishna6788/game-of-life.git',
                     branch: 'Declartive'
                     }
                 }
