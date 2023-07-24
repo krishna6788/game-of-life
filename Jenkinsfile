@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'Machine'}
+    parameters {
+        string(name: 'MAVEN_GOAL',defaultValue: 'package', description: 'maven goal')
+    }
     stages {
         stage('Version Control System') {
             steps {
@@ -13,7 +16,12 @@ pipeline {
 
             }
         }
-        stage('Artifacts and JunittestResults') {
+        stage('mvn stage') {
+            steps {
+                sh "mvn ${params.MAVEN_GOAL}"
+            }
+        }
+        stage('Post Build') {
             steps {
                 archiveArtifacts artifacts: '**/gameoflife.war',
                    allowEmptyArchive: true,
