@@ -10,6 +10,7 @@ pipeline {
                     branch: 'Declartive'
                     }
                 }
+        
         stage('Build Stage') {
             tools {
                 jdk 'JDK_8_UBUNTU'
@@ -19,6 +20,13 @@ pipeline {
                 sh "mvn ${params.MAVEN_GOAL}"
             }
         }
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('Sonar_cloud') { // You can override the credential to be used
+                //sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                sh 'mvn clean package sonar:sonar'
+            }
+            }
         stage('Post Build') {
             steps {
                 archiveArtifacts artifacts: '**/gameoflife.war',
