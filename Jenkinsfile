@@ -27,6 +27,7 @@ pipeline {
                 sh 'mvn clean package sonar:sonar'
             }
             }
+        }
         stage('Post Build') {
             steps {
                 archiveArtifacts artifacts: '**/gameoflife.war',
